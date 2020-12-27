@@ -5,8 +5,9 @@ import java.math.BigDecimal;
 public class item_storageDO {
     private String itemId;
     private String itemName;
-    private Integer storageNumber;
-    private BigDecimal itemPrice;
+    private Double itemPrice;
+    private Double storageNumber;
+
 
     public String getItemId() {
         return itemId;
@@ -20,23 +21,27 @@ public class item_storageDO {
     public void setItemName(String itemName) {
         this.itemName = itemName == null ? null : itemName.trim();
     }
-    public Integer getStorageNumber() {
-        return storageNumber;
-    }
-    public void setStorageNumber(Integer storageNumber) {
-        this.storageNumber = storageNumber;
-    }
-    public BigDecimal getItemPrice() {
+
+    public Double getItemPrice() {
         return itemPrice;
     }
-    public void setItemPrice(BigDecimal itemPrice) {
+
+    public void setItemPrice(Double itemPrice) {
         this.itemPrice = itemPrice;
     }
 
-    public item_storageDO(String itemId, String itemName, Integer storageNumber, BigDecimal itemPrice) {
+    public Double getStorageNumber() {
+        return storageNumber;
+    }
+
+    public void setStorageNumber(Double storageNumber) {
+        this.storageNumber = storageNumber;
+    }
+
+    public item_storageDO(String itemId, String itemName, double itemPrice, double storageNumber) {
         this.itemId = itemId;
         this.itemName = itemName;
-        this.storageNumber = storageNumber;
         this.itemPrice = itemPrice;
+        this.storageNumber = storageNumber;
     }
 }
