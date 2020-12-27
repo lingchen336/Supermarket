@@ -1,20 +1,23 @@
 package com.supermarket.controller;
 
 import com.supermarket.dataobject.employee_InfoDO;
+import com.supermarket.dataobject.item_storageDO;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Vector;
 
 public class Login extends JFrame implements ActionListener {
-	public static String kk;
+	public static String kk;  //empolyeeName
 	//定义窗口中存在的控件
 	JLabel userLa,passLa;
 	JTextField userTxt;
 	JPasswordField passTxt;
-	JButton loBt,quitBt;
-	JButton addBt;
+	JButton loBt,quitBt,sellBt,detialBt;
 	private DefaultTableModel model = null;
 	private JTable table = null;
 	private JButton addBtn = null;
@@ -58,15 +61,13 @@ public class Login extends JFrame implements ActionListener {
 
 	public void actionPerformed(ActionEvent e)
 	{
-		System.out.println("我是大爷！！");
-
 		JButton bt=(JButton)e.getSource();
 		if(bt.getText().equals("登录"))
 		{
 			//获取用户输入的用户名和密码
 			 String userName=userTxt.getText().trim();
 			String pass=passTxt.getText().trim();
-			//调用学生文件处理类来进行验证
+			//调用员工文件处理类来进行验证
 			Employee_Info deal=new Employee_Info();
 			try {
 				List<employee_InfoDO> list1=new ArrayList<employee_InfoDO>();
@@ -74,25 +75,24 @@ public class Login extends JFrame implements ActionListener {
 				for(employee_InfoDO Item : list1){
 					kk=Item.getEmployeeName();
 				}
-	if(kk!=null) {
-		initMainFrame();
-	}
-	else
-		{ userTxt.setText("");
-		passTxt.setText("");
-		}
-		} catch (Exception e1) {
+				if(kk!=null) {      //登录验证成功
+					initMainFrame();
+				}
+				else { 	        //登录失败！！！
+					userTxt.setText("");
+					passTxt.setText("");
+				}
+			} catch (Exception e1) {
 				e1.printStackTrace();
-		}
+			}
 		}
 		else if(bt.getText().equals("退出"))
 		{
 			System.exit(0);//退出应用程序
 		}
-
 		else if(bt.getText().equals("零售界面"))
 		{
-			new Sell();
+			new Sell();            //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 		}
 		else if(bt.getText().equals("销售明细"))
 		{
@@ -115,9 +115,6 @@ public class Login extends JFrame implements ActionListener {
 //			Sell sell=new Sell();
 			System.out.println("hello");
 		}
-
-
-
 	}
 
 	public void initMainFrame()
@@ -127,39 +124,35 @@ public class Login extends JFrame implements ActionListener {
 		this.getContentPane().removeAll();
 		//添加界面的控件
 
-		addBt=new JButton("零售界面");
-		addBt.setSize(100,30);
-		addBt.setLocation(30, 50);
-		addBt.addActionListener(this);
-		this.add(addBt);
+		sellBt=new JButton("零售界面");
+		sellBt.setSize(100,30);
+		sellBt.setLocation(30, 50);
+		sellBt.addActionListener(this);
+		this.add(sellBt);
 
-		addBt=new JButton("销售明细");
-		addBt.setSize(100,30);
-		addBt.setLocation(30, 110);
-		this.add(addBt);
+		detialBt=new JButton("销售明细");
+		detialBt.setSize(100,30);
+		detialBt.setLocation(30, 110);
+		this.add(detialBt);
 
-		addBt=new JButton("库存查询");
-		addBt.setSize(100,30);
-		addBt.setLocation(30, 170);
-		this.add(addBt);
-
-		addBt=new JButton("进货管理");
-		addBt.setSize(100,30);
-		addBt.setLocation(30, 230);
-		this.add(addBt);
-
-		addBt=new JButton("退货");
-		addBt.setSize(100,30);
-		addBt.setLocation(30, 290);
-		this.add(addBt);
+//		addBt=new JButton("库存查询");
+//		addBt.setSize(100,30);
+//		addBt.setLocation(30, 170);
+//		this.add(addBt);
+//
+//		addBt=new JButton("进货管理");
+//		addBt.setSize(100,30);
+//		addBt.setLocation(30, 230);
+//		this.add(addBt);
+//
+//		addBt=new JButton("退货");
+//		addBt.setSize(100,30);
+//		addBt.setLocation(30, 290);
+//		this.add(addBt);
 
 	}
 
 	public static String getKk() {
 		return kk;
-	}
-
-	public void setKk(String kk) {
-		this.kk = kk;
 	}
 }

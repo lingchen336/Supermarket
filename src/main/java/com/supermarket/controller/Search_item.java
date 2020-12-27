@@ -7,16 +7,13 @@ import java.sql.*;
 import java.util.*;
 
 public class Search_item {
-
+    //查询库存信息
     public List<item_storageDO> search(String id,String name) throws Exception{
-
         List<item_storageDO> item_storageDOList=new ArrayList<item_storageDO>();
-
         ResourceBundle resourceBundle=ResourceBundle.getBundle("application");
         Connection connection=null;
         PreparedStatement ps=null;
         ResultSet rs=null;
-
         try{
             //获取链接数据库
             String driver=resourceBundle.getString("driver");
@@ -40,9 +37,9 @@ public class Search_item {
             while(rs.next()){
                 String item_id=rs.getString(1);
                 String item_name=rs.getString(2);
-                int s_number=rs.getInt(3);
-                BigDecimal item_price=rs.getBigDecimal(4);
-                item_storageDO Ite=new item_storageDO(item_id,item_name,s_number,item_price);
+                double item_price=rs.getDouble(3);
+                double s_number=rs.getDouble(4);
+                item_storageDO Ite=new item_storageDO(item_id,item_name,item_price,s_number);
                 item_storageDOList.add(0,Ite);
             }
 
