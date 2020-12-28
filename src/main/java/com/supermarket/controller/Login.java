@@ -1,15 +1,12 @@
 package com.supermarket.controller;
 
 import com.supermarket.dataobject.employee_InfoDO;
-import com.supermarket.dataobject.item_storageDO;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.*;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Vector;
 
 public class Login extends JFrame implements ActionListener {
 	public static String kk;  //empolyeeName
@@ -17,7 +14,7 @@ public class Login extends JFrame implements ActionListener {
 	JLabel userLa,passLa;
 	JTextField userTxt;
 	JPasswordField passTxt;
-	JButton loBt,quitBt,sellBt,detialBt;
+	JButton loBt,quitBt,sellBt,detialBt,stockBt;
 	private DefaultTableModel model = null;
 	private JTable table = null;
 	private JButton addBtn = null;
@@ -50,7 +47,7 @@ public class Login extends JFrame implements ActionListener {
 		loBt.setLocation(120, 150);
 		loBt.addActionListener(this);
 		this.add(loBt);//将按钮放到窗体上
-		quitBt=new JButton("退出");//创建按钮
+		quitBt=new JButton("注册");//创建按钮
 		quitBt.setSize(60, 30);
 		quitBt.setLocation(210, 150);
 		quitBt.addActionListener(this);
@@ -65,7 +62,7 @@ public class Login extends JFrame implements ActionListener {
 		if(bt.getText().equals("登录"))
 		{
 			//获取用户输入的用户名和密码
-			 String userName=userTxt.getText().trim();
+			 int userName= Integer.parseInt(userTxt.getText().trim());
 			String pass=passTxt.getText().trim();
 			//调用员工文件处理类来进行验证
 			Employee_Info deal=new Employee_Info();
@@ -86,9 +83,9 @@ public class Login extends JFrame implements ActionListener {
 				e1.printStackTrace();
 			}
 		}
-		else if(bt.getText().equals("退出"))
+		else if(bt.getText().equals("注册"))
 		{
-			System.exit(0);//退出应用程序
+			new Logup();
 		}
 		else if(bt.getText().equals("零售界面"))
 		{
@@ -112,7 +109,6 @@ public class Login extends JFrame implements ActionListener {
 			System.exit(0);//退出应用程序
 		}
 		else if(bt.getText().equals("查询")){
-//			Sell sell=new Sell();
 			System.out.println("hello");
 		}
 	}
@@ -135,20 +131,15 @@ public class Login extends JFrame implements ActionListener {
 		detialBt.setLocation(30, 110);
 		this.add(detialBt);
 
-//		addBt=new JButton("库存查询");
-//		addBt.setSize(100,30);
-//		addBt.setLocation(30, 170);
-//		this.add(addBt);
-//
-//		addBt=new JButton("进货管理");
-//		addBt.setSize(100,30);
-//		addBt.setLocation(30, 230);
-//		this.add(addBt);
-//
-//		addBt=new JButton("退货");
-//		addBt.setSize(100,30);
-//		addBt.setLocation(30, 290);
-//		this.add(addBt);
+		stockBt=new JButton("进货管理");
+		stockBt.setSize(100,30);
+		stockBt.setLocation(30, 170);
+		this.add(stockBt);
+
+		quitBt=new JButton("退货");
+		quitBt.setSize(100,30);
+		quitBt.setLocation(30, 230);
+		this.add(quitBt);
 
 	}
 

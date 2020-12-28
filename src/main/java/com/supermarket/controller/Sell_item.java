@@ -1,12 +1,8 @@
 package com.supermarket.controller;
 
-import com.supermarket.dataobject.employee_InfoDO;
-import com.supermarket.dataobject.transforDO;
 import java.sql.*;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class Sell_item {
