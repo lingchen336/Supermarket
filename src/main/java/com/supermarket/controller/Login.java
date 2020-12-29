@@ -14,7 +14,7 @@ public class Login extends JFrame implements ActionListener {
 	JLabel userLa,passLa,welcomeLa,name_La;
 	JTextField userTxt;
 	JPasswordField passTxt;
-	JButton loBt,quitBt,sellBt,detialBt,stockBt;
+	JButton loBt,quitBt,sellBt,registerBt,stockBt;
 	private DefaultTableModel model = null;
 	private JTable table = null;
 	private JButton addBtn = null;
@@ -47,7 +47,7 @@ public class Login extends JFrame implements ActionListener {
 		loBt.setLocation(120, 150);
 		loBt.addActionListener(this);
 		this.add(loBt);//将按钮放到窗体上
-		quitBt=new JButton("注册");//创建按钮
+		quitBt=new JButton("退出");//创建按钮
 		quitBt.setSize(60, 30);
 		quitBt.setLocation(210, 150);
 		quitBt.addActionListener(this);
@@ -78,14 +78,15 @@ public class Login extends JFrame implements ActionListener {
 				else { 	        //登录失败！！！
 					userTxt.setText("");
 					passTxt.setText("");
+					JOptionPane.showMessageDialog(this, "登录失败");
 				}
 			} catch (Exception e1) {
 				e1.printStackTrace();
 			}
 		}
-		else if(bt.getText().equals("注册"))
+		else if(bt.getText().equals("退出"))
 		{
-			new Logup();
+			System.exit(0);
 		}
 	}
 
@@ -112,9 +113,13 @@ public class Login extends JFrame implements ActionListener {
 		stockBt.setSize(100,30);
 		stockBt.setLocation(30, 220);
 		this.add(stockBt);
+		registerBt=new JButton("人员注册");
+		registerBt.setSize(100,30);
+		registerBt.setLocation(30, 280);
+		this.add(registerBt);
 		quitBt=new JButton("退出登录");
 		quitBt.setSize(100,30);
-		quitBt.setLocation(30, 280);
+		quitBt.setLocation(30, 340);
 		this.add(quitBt);
 
 		//对进货管理按钮的监控
@@ -138,6 +143,14 @@ public class Login extends JFrame implements ActionListener {
 			public void actionPerformed(ActionEvent e)
 			{
 				new Sell();
+				Login.this.dispose();
+			}
+		});
+		//对人员注册按钮的监控
+		registerBt.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e)
+			{
+				new Logup();
 				Login.this.dispose();
 			}
 		});

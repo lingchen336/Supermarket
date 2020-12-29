@@ -4,17 +4,16 @@ import com.supermarket.dataobject.item_storageDO;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.*;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
 
 public class InsertItem extends JFrame {
-    String onePrice,insertNum,itemID,itemName;  //单价，输入数量,ID,货物名
-    int x=1;
     double itemStatics=0;
     JLabel userLa,numLa,priceLa,welcomeLa,name_La;
     JTextField itemIDTxt,itemNameTxt,sellsTxt,numTxt,priceTxt;
-    JButton sellBt=null,quitBt=null,detialBt=null,stockBt=null;
+    JButton sellBt=null,quitBt=null,registerBt=null,stockBt=null;
     // 默认表格模型
     private DefaultTableModel model = null;
     private JTable table = null;
@@ -84,9 +83,13 @@ public class InsertItem extends JFrame {
         stockBt.setSize(100,30);
         stockBt.setLocation(30, 220);
         this.add(stockBt);
+        registerBt=new JButton("人员注册");
+        registerBt.setSize(100,30);
+        registerBt.setLocation(30, 280);
+        this.add(registerBt);
         quitBt=new JButton("退出登录");
         quitBt.setSize(100,30);
-        quitBt.setLocation(30, 280);
+        quitBt.setLocation(30, 340);
         this.add(quitBt);
 
         //对确认进货按钮的监控
@@ -106,7 +109,10 @@ public class InsertItem extends JFrame {
                 } catch (Exception exception) {
                     exception.printStackTrace();
                 }
-
+                SimpleDateFormat df=new SimpleDateFormat("yyy-MM-dd HH:mm:ss");
+                String date=df.format(new Date());
+                System.out.println(date+" "+ Login.getKk()+"进货"+name+num);
+                JOptionPane.showMessageDialog(InsertItem.this, "进货成功");
             }
         });
         //对进货管理按钮的监控
@@ -130,6 +136,14 @@ public class InsertItem extends JFrame {
             public void actionPerformed(ActionEvent e)
             {
                 new Sell();
+                InsertItem.this.dispose();
+            }
+        });
+        //对人员注册按钮的监控
+        registerBt.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e)
+            {
+                new Logup();
                 InsertItem.this.dispose();
             }
         });

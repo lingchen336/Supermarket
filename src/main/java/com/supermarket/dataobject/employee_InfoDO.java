@@ -2,7 +2,7 @@ package com.supermarket.dataobject;
 
 public class employee_InfoDO {
 
-    private String employeeId;
+    private Integer employeeId;
     private String employeeWork;
     private String employeeName;
     private String employeeSex;
@@ -11,11 +11,11 @@ public class employee_InfoDO {
     private String employeePhone;
     private String employeePassword;
 
-    public String getEmployeeId() {
+    public int getEmployeeId() {
         return employeeId;
     }
 
-    public void setEmployeeId(String employeeId) {
+    public void setEmployeeId(int employeeId) {
         this.employeeId = employeeId;
     }
 
@@ -75,7 +75,7 @@ public class employee_InfoDO {
         this.employeePassword = employeePassword;
     }
 
-    public employee_InfoDO(String employeeId, String employeeWork, String employeeName, String employeeSex, Integer employeeAge, String employeeIdcard, String employeePhone, String employeePassword) {
+    public employee_InfoDO(int employeeId, String employeeWork, String employeeName, String employeeSex, Integer employeeAge, String employeeIdcard, String employeePhone, String employeePassword) {
         this.employeeId = employeeId;
         this.employeeWork = employeeWork;
         this.employeeName = employeeName;

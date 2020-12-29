@@ -9,12 +9,12 @@ import java.util.List;
 
 
 public class Sell extends JFrame {
-    String onePrice,insertNum,itemID,itemName;  //单价，输入数量,ID,货物名
+    String onePrice,insertNum,I_ID,I_Name;  //单价，输入数量,ID,货物名
     int x=1;
     double itemStatics=0;
     JLabel userLa,sellsLa,allLa,allSells,yuanLa,numLa,priceLa,welcomeLa,nameLa;
     JTextField itemIDTxt,itemNameTxt,sellsTxt,numTxt,priceTxt;
-    JButton sellBt=null,quitBt=null,detialBt=null,stockBt=null;
+    JButton sellBt=null,quitBt=null,registerBt=null,stockBt=null;
     // 默认表格模型
     private DefaultTableModel model = null;
     private JTable table = null;
@@ -106,9 +106,13 @@ public class Sell extends JFrame {
         stockBt.setSize(100,30);
         stockBt.setLocation(30, 220);
         this.add(stockBt);
+        registerBt=new JButton("人员注册");
+        registerBt.setSize(100,30);
+        registerBt.setLocation(30, 280);
+        this.add(registerBt);
         quitBt=new JButton("退出登录");
         quitBt.setSize(100,30);
-        quitBt.setLocation(30, 280);
+        quitBt.setLocation(30, 340);
         this.add(quitBt);
         //对查询按钮进行监控
         addBtn.addActionListener(new ActionListener() {
@@ -128,8 +132,8 @@ public class Sell extends JFrame {
 
                     Double storageNumber = Item.getStorageNumber();
                     onePrice=Item.getItemPrice().toString();     //onePrice==单价
-                    itemID=Item.getItemId().toString();
-                    itemName=Item.getItemName();
+                    I_ID=Item.getItemId();
+                    I_Name=Item.getItemName();
                     JTextField txt=new JTextField();
                     txt.setText(String.valueOf(storageNumber));
                     txt.setSize(80,30);
@@ -156,7 +160,7 @@ public class Sell extends JFrame {
                 String statics=String.valueOf(itemStatics);  //总价
                 double num=Double.parseDouble(insertNum);   //销售数量
 
-                sell.sell_item(itemID,itemName,onePrice,statics,num);
+                sell.sell_item(I_ID,I_Name,onePrice,statics,num);
                 System.out.println(new Date().toString()+"第"+x+++"单！");
                 String val=String.valueOf(itemStatics);
 
@@ -191,7 +195,14 @@ public class Sell extends JFrame {
                 Sell.this.dispose();
             }
         });
-
+        //对人员注册按钮的监控
+        registerBt.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e)
+            {
+                new Logup();
+                Sell.this.dispose();
+            }
+        });
         setVisible(true);
 
     }

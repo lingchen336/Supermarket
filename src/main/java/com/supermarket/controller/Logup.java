@@ -3,8 +3,10 @@ import javax.swing.*;
 import java.awt.event.*;
 
 public class Logup extends JFrame {
-    JLabel workLa,nameLa,sexLa,ageLa,idLa,phoneLa;
+    JLabel workLa,nameLa,sexLa,ageLa,idLa,phoneLa,welcomeLa,name_La;
     JTextField workTxt,nameTxt,sexTxt,ageTxt,idTxt,phoneTxt;
+    JButton sellBt=null,quitBt=null,registerBt=null,stockBt=null;
+    String kk=Login.getKk();
     // 默认表格模型
     private JButton addBtn = null;
 
@@ -102,8 +104,9 @@ public class Logup extends JFrame {
                 }
                 //根据姓名配置唯一ID与设置密码
                 int employee_id = logupDeal.get_employee_Id(name);
+                new LogupAccess(employee_id);
                 Logup.this.dispose();
-                LogupAccess logupAccess=new LogupAccess(employee_id);
+
 
             }
         });

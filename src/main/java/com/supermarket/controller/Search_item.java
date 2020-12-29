@@ -40,7 +40,7 @@ public class Search_item {
                 double item_price=rs.getDouble(3);
                 double s_number=rs.getDouble(4);
                 item_storageDO Ite=new item_storageDO(item_id,item_name,item_price,s_number);
-                item_storageDOList.add(0,Ite);
+                item_storageDOList.add(Ite);
             }
 
         }catch(Exception e){
