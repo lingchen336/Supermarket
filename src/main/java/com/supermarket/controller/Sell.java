@@ -12,14 +12,14 @@ public class Sell extends JFrame {
     String onePrice,insertNum,itemID,itemName;  //单价，输入数量,ID,货物名
     int x=1;
     double itemStatics=0;
-    JLabel userLa,sellsLa,allLa,allSells,yuanLa,numLa,priceLa;
+    JLabel userLa,sellsLa,allLa,allSells,yuanLa,numLa,priceLa,welcomeLa,nameLa;
     JTextField itemIDTxt,itemNameTxt,sellsTxt,numTxt,priceTxt;
     JButton sellBt=null,quitBt=null,detialBt=null,stockBt=null;
     // 默认表格模型
     private DefaultTableModel model = null;
     private JTable table = null;
     private JButton addBtn = null,addBtn1=null;
-
+    String name=Login.getKk();
     public  Sell()
     {
         setSize(1000, 800);
@@ -90,24 +90,25 @@ public class Sell extends JFrame {
 //        table.setSize(150, 30);
 //        table.setLocation(2000, 200);
 //        this.add(new JScrollPane(table));
+        welcomeLa=new JLabel("欢迎您！");//创建标签
+        welcomeLa.setSize(80, 60);
+        welcomeLa.setLocation(60, 20);
+        this.add(welcomeLa);//将标签放到窗体上
+        nameLa=new JLabel(name);//创建标签
+        nameLa.setSize(80, 60);
+        nameLa.setLocation(60, 60);
+        this.add(nameLa);//将标签放到窗体上
         sellBt=new JButton("零售界面");
         sellBt.setSize(100,30);
-        sellBt.setLocation(30, 50);
+        sellBt.setLocation(30, 160);
         this.add(sellBt);
-
-        detialBt=new JButton("销售明细");
-        detialBt.setSize(100,30);
-        detialBt.setLocation(30, 110);
-        this.add(detialBt);
-
         stockBt=new JButton("进货管理");
         stockBt.setSize(100,30);
-        stockBt.setLocation(30, 170);
+        stockBt.setLocation(30, 220);
         this.add(stockBt);
-
-        quitBt=new JButton("退货");
+        quitBt=new JButton("退出登录");
         quitBt.setSize(100,30);
-        quitBt.setLocation(30, 230);
+        quitBt.setLocation(30, 280);
         this.add(quitBt);
         //对查询按钮进行监控
         addBtn.addActionListener(new ActionListener() {
@@ -166,6 +167,31 @@ public class Sell extends JFrame {
                 Sell.this.add(txt);//将标签放到窗体上
             }
         });
+        //对进货管理按钮的监控
+        stockBt.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e)
+            {
+                new InsertItem();
+                Sell.this.dispose();
+            }
+        });
+        //对退出登录按钮的监控
+        quitBt.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e)
+            {
+                Sell.this.dispose();
+                new Login();
+            }
+        });
+        //对零售界面按钮的监控
+        sellBt.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e)
+            {
+                new Sell();
+                Sell.this.dispose();
+            }
+        });
+
         setVisible(true);
 
     }

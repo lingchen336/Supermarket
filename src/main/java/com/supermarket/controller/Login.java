@@ -11,7 +11,7 @@ import java.util.List;
 public class Login extends JFrame implements ActionListener {
 	public static String kk;  //empolyeeName
 	//定义窗口中存在的控件
-	JLabel userLa,passLa;
+	JLabel userLa,passLa,welcomeLa,name_La;
 	JTextField userTxt;
 	JPasswordField passTxt;
 	JButton loBt,quitBt,sellBt,detialBt,stockBt;
@@ -87,30 +87,6 @@ public class Login extends JFrame implements ActionListener {
 		{
 			new Logup();
 		}
-		else if(bt.getText().equals("零售界面"))
-		{
-			new Sell();            //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-		}
-		else if(bt.getText().equals("销售明细"))
-		{
-			System.out.println("HHHHHHHHHHH");
-			System.exit(0);//退出应用程序
-		}
-		else if(bt.getText().equals("库存查询"))
-		{
-			System.exit(0);//退出应用程序
-		}
-		else if(bt.getText().equals("进货管理"))
-		{
-			System.exit(0);//退出应用程序
-		}
-		else if(bt.getText().equals("退货"))
-		{
-			System.exit(0);//退出应用程序
-		}
-		else if(bt.getText().equals("查询")){
-			System.out.println("hello");
-		}
 	}
 
 	public void initMainFrame()
@@ -120,27 +96,52 @@ public class Login extends JFrame implements ActionListener {
 		this.getContentPane().removeAll();
 		//添加界面的控件
 
+		welcomeLa=new JLabel("欢迎您！");//创建标签
+		welcomeLa.setSize(80, 60);
+		welcomeLa.setLocation(60, 20);
+		this.add(welcomeLa);//将标签放到窗体上
+		name_La=new JLabel(kk);//创建标签
+		name_La.setSize(80, 60);
+		name_La.setLocation(60, 60);
+		this.add(name_La);//将标签放到窗体上
 		sellBt=new JButton("零售界面");
 		sellBt.setSize(100,30);
-		sellBt.setLocation(30, 50);
-		sellBt.addActionListener(this);
+		sellBt.setLocation(30, 160);
 		this.add(sellBt);
-
-		detialBt=new JButton("销售明细");
-		detialBt.setSize(100,30);
-		detialBt.setLocation(30, 110);
-		this.add(detialBt);
-
 		stockBt=new JButton("进货管理");
 		stockBt.setSize(100,30);
-		stockBt.setLocation(30, 170);
+		stockBt.setLocation(30, 220);
 		this.add(stockBt);
-
-		quitBt=new JButton("退货");
+		quitBt=new JButton("退出登录");
 		quitBt.setSize(100,30);
-		quitBt.setLocation(30, 230);
+		quitBt.setLocation(30, 280);
 		this.add(quitBt);
 
+		//对进货管理按钮的监控
+		stockBt.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e)
+			{
+				new InsertItem();
+				Login.this.dispose();
+			}
+		});
+		//对退出登录按钮的监控
+		quitBt.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e)
+			{
+				Login.this.dispose();
+				new Login();
+			}
+		});
+		//对零售界面按钮的监控
+		sellBt.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e)
+			{
+				new Sell();
+				Login.this.dispose();
+			}
+		});
+		this.setVisible(true);//设置窗体可见
 	}
 
 	public static String getKk() {
