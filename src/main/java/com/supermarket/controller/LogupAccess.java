@@ -68,13 +68,16 @@ public class LogupAccess extends JFrame {
                 String p2=pass2.getText().trim();
                 if(p1.equals(p2)){
                     //密码一致，向数据库表employee_info 插入密码
+                    JOptionPane.showMessageDialog(LogupAccess.this, "注册成功");
                     LogupDeal logupDeal=new LogupDeal();
                     logupDeal.set_employee_password(id,p1);
                     //完成，返回登录页面
                     LogupAccess.this.dispose();
+                    new Login();
                 }else{   //密码不一致
                     pass1.setText("");
                     pass2.setText("");
+                    JOptionPane.showMessageDialog(LogupAccess.this, "密码不一致");
                 }
             }
         });
