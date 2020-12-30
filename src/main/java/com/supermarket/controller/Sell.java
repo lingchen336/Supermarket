@@ -7,6 +7,8 @@ import java.awt.event.*;
 import java.util.Date;
 import java.util.List;
 
+import static com.supermarket.controller.Login.getKk;
+
 
 public class Sell extends JFrame {
     String onePrice,insertNum,I_ID,I_Name;  //单价，输入数量,ID,货物名
@@ -19,7 +21,7 @@ public class Sell extends JFrame {
     private DefaultTableModel model = null;
     private JTable table = null;
     private JButton addBtn = null,addBtn1=null;
-    String name=Login.getKk();
+    String name= getKk();
     public  Sell()
     {
         setSize(1000, 800);
@@ -199,8 +201,20 @@ public class Sell extends JFrame {
         registerBt.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e)
             {
-                new Logup();
-                Sell.this.dispose();
+                String b=null;
+                Search_item search_item=new Search_item();
+                try {
+                    b = search_item.getPermission(getKk());
+                    if(b.equals("0")) {
+                        JOptionPane.showMessageDialog(Sell.this, "您没有权限");
+                    };
+                } catch (Exception e1) {
+                    e1.printStackTrace();
+                }
+                if(b.equals("Y")){
+                    new Logup();
+                    Sell.this.dispose();
+                }
             }
         });
         setVisible(true);

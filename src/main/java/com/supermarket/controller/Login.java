@@ -90,8 +90,7 @@ public class Login extends JFrame implements ActionListener {
 		}
 	}
 
-	public void initMainFrame()
-	{
+	public void initMainFrame() throws Exception {
 		this.setSize(1000, 800);
 		this.setTitle("主窗口");
 		this.getContentPane().removeAll();
@@ -150,10 +149,23 @@ public class Login extends JFrame implements ActionListener {
 		registerBt.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e)
 			{
-				new Logup();
-				Login.this.dispose();
+				String b=null;
+				Search_item search_item=new Search_item();
+				try {
+					b = search_item.getPermission(getKk());
+					if(b.equals("0")) {
+						JOptionPane.showMessageDialog(Login.this, "您没有权限");
+					};
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+				if(b.equals("Y")){
+					new Logup();
+					Login.this.dispose();
+				}
 			}
 		});
+
 		this.setVisible(true);//设置窗体可见
 	}
 

@@ -64,4 +64,47 @@ public class Search_item {
         }
         return item_storageDOList;
     }
+    public String getPermission(String name) throws Exception{
+        ResourceBundle resourceBundle=ResourceBundle.getBundle("application");
+        Connection connection=null;
+        PreparedStatement ps=null;
+        ResultSet rs=null;
+        String permission=null;
+        try{
+            //获取链接数据库
+            String driver=resourceBundle.getString("driver");
+            String url=resourceBundle.getString("url");
+            String user=resourceBundle.getString("user");
+            String password=resourceBundle.getString("password");
+            /**
+             * 1.注册驱动
+             */
+            Class.forName(driver);
+            //2.获取连接
+            connection= DriverManager.getConnection(url,user,password);
+            //3.获取预编译的数据库操作对象
+            String sql="select permission from employee_info where employee_Name=?";
+            ps= connection.prepareStatement(sql);
+            ps.setString(1,name);
+            //4.执行sql
+            rs=ps.executeQuery();
+            while(rs.next()){
+                permission=rs.getString(1);
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }finally {
+            if(ps!=null)try{
+                ps.close();
+            }catch (SQLException e){
+                e.printStackTrace();
+            }
+            if(connection!=null)try{
+                connection.close();
+            }catch (SQLException e){
+                e.printStackTrace();
+            }
+        }
+        return permission;
+    }
 }

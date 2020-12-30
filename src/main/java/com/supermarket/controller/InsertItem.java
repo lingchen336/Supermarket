@@ -8,6 +8,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import static com.supermarket.controller.Login.getKk;
+
 
 public class InsertItem extends JFrame {
     double itemStatics=0;
@@ -18,7 +20,7 @@ public class InsertItem extends JFrame {
     private DefaultTableModel model = null;
     private JTable table = null;
     private JButton addBtn = null,addBtn1=null;
-    String l_name=Login.getKk();
+    String l_name= getKk();
     public  InsertItem()
     {
         setSize(1000, 800);
@@ -111,7 +113,7 @@ public class InsertItem extends JFrame {
                 }
                 SimpleDateFormat df=new SimpleDateFormat("yyy-MM-dd HH:mm:ss");
                 String date=df.format(new Date());
-                System.out.println(date+" "+ Login.getKk()+"进货"+name+num);
+                System.out.println(date+" "+ getKk()+"进货"+name+num);
                 JOptionPane.showMessageDialog(InsertItem.this, "进货成功");
             }
         });
@@ -143,8 +145,20 @@ public class InsertItem extends JFrame {
         registerBt.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e)
             {
-                new Logup();
-                InsertItem.this.dispose();
+                String b=null;
+                Search_item search_item=new Search_item();
+                try {
+                    b = search_item.getPermission(getKk());
+                    if(b.equals("0")) {
+                        JOptionPane.showMessageDialog(InsertItem.this, "您没有权限");
+                    };
+                } catch (Exception e1) {
+                    e1.printStackTrace();
+                }
+                if(b.equals("Y")){
+                    new Logup();
+                    InsertItem.this.dispose();
+                }
             }
         });
         setVisible(true);
