@@ -1,5 +1,7 @@
-package com.supermarket.controller;
+package com.supermarket.VO;
 
+import com.supermarket.controller.Employee_Info;
+import com.supermarket.controller.Search_item;
 import com.supermarket.dataobject.employee_InfoDO;
 
 import javax.swing.*;

@@ -1,5 +1,7 @@
-package com.supermarket.controller;
+package com.supermarket.VO;
 
+import com.supermarket.controller.Search_item;
+import com.supermarket.controller.Sell_item;
 import com.supermarket.dataobject.item_storageDO;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -7,7 +9,7 @@ import java.awt.event.*;
 import java.util.Date;
 import java.util.List;
 
-import static com.supermarket.controller.Login.getKk;
+import static com.supermarket.VO.Login.getKk;
 
 
 public class Sell extends JFrame {

@@ -1,5 +1,7 @@
 package com.supermarket.controller;
 
+import com.supermarket.VO.Login;
+
 import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -9,7 +11,7 @@ public class Sell_item {
     //向transfor表插入销售详细信息
     //更新库存表item_storage的storage_num
     public void sell_item(String  itemID, String itemName,String itemPrice,String itemStatics,double num){
-        String name=Login.getKk();   //获取登录员工姓名
+        String name= Login.getKk();   //获取登录员工姓名
         Employee_Info employee_info=new Employee_Info();
 
         ResourceBundle resourceBundle=ResourceBundle.getBundle("application");

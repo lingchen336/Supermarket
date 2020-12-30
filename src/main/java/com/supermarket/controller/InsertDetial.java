@@ -1,4 +1,6 @@
 package com.supermarket.controller;
+import com.supermarket.VO.Login;
+
 import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -7,7 +9,7 @@ import java.util.ResourceBundle;
 public class InsertDetial {
     public String  cashier=null;
 
-    protected  void deal(String id,String name ,double num,double price) throws Exception {
+    public   void deal(String id,String name ,double num,double price) throws Exception {
         ResultSet rs1=null;
         ResourceBundle resourceBundle=ResourceBundle.getBundle("application");
         Connection connection=null;
@@ -27,7 +29,7 @@ public class InsertDetial {
                     "on duplicate key update storage_num=storage_num+?";
             SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             String date=df.format(new Date());
-            String e_name=Login.getKk();   //获取登录员工姓名
+            String e_name= Login.getKk();   //获取登录员工姓名
             ps=connection.prepareStatement(sql);
             ps.setString(1,id);
             ps.setString(2,name);

@@ -1,4 +1,6 @@
-package com.supermarket.controller;
+package com.supermarket.VO;
+import com.supermarket.controller.LogupDeal;
+
 import javax.swing.*;
 import java.awt.event.*;
 
@@ -6,7 +8,7 @@ public class Logup extends JFrame {
     JLabel workLa,nameLa,sexLa,ageLa,idLa,phoneLa,welcomeLa,name_La;
     JTextField workTxt,nameTxt,sexTxt,ageTxt,idTxt,phoneTxt;
     JButton sellBt=null,quitBt=null,registerBt=null,stockBt=null;
-    String kk=Login.getKk();
+    String kk= Login.getKk();
     // 默认表格模型
     private JButton addBtn = null;
 

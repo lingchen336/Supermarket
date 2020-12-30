@@ -47,7 +47,7 @@ public class LogupDeal {
             }
         }
     }
-    protected int get_employee_Id(String name){
+    public int get_employee_Id(String name){
         int id=0;
         ResultSet rs1=null;
         ResourceBundle resourceBundle=ResourceBundle.getBundle("application");
@@ -89,7 +89,7 @@ public class LogupDeal {
         }
         return id;
     }
-    protected void set_employee_password(int id,String p1){
+    public void set_employee_password(int id,String p1){
         ResultSet rs1=null;
         ResourceBundle resourceBundle=ResourceBundle.getBundle("application");
         Connection connection=null;
@@ -127,7 +127,7 @@ public class LogupDeal {
             }
         }
     }
-    protected void delete_employee_info(int id){
+    public void delete_employee_info(int id){
         ResultSet rs1=null;
         ResourceBundle resourceBundle=ResourceBundle.getBundle("application");
         Connection connection=null;

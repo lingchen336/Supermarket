@@ -1,4 +1,6 @@
-package com.supermarket.controller;
+package com.supermarket.VO;
+import com.supermarket.controller.LogupDeal;
+
 import javax.swing.*;
 import java.awt.event.*;
 
